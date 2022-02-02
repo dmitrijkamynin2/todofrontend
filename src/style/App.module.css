@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+  }
+
+.head_container {  
+    width: 42.349%;
+    margin: 10px auto 0 auto;
+    max-width: 980px;
+    max-height: 230px;
+    min-width: 700px;
+    min-height: 230px;
+}
+  
+.head {
+    height: 12vh;
+    width: 100%;
+}
+
+img {
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    border: solid 1px #c7c7c7;
+}
+
+input {
+    font-size: 120%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    background-color: white;
+    border-radius: 25px;
+}
+
+p{
+    word-break: break-all;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: 1px auto;
+    width: 42.349%;
+    min-width: 700px;
+    min-height: 400px;
+}
+
+.do {
+    margin: 10px auto;
+    flex: 5vw;
+    background-color: white;
+    border-radius: 5px;
+    padding-right: 2%;
+    flex-direction: row;
+    height: 8vh;
+    min-height: 75px;
+    max-width: 980px;
+    max-height: 100px;
+    border: solid 1px #c7c7c7;
+    width: 100%;
+}
+
+.mybody{
+    width: 100vw;
+    min-width: 700px;
+    min-height: 700px;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../image/background.jpg);
+}
+
+.pagingconteiner{
+    flex: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.colcol{
+    width: 100%;
+    margin: 10px auto;
+}
+
+.colcolsort{
+    width: 100%;
+    margin: 10px auto;
+    font-size: 140%;
+    text-align: left;
+}
+
+.colcolinput{
+    width: 100%;
+    margin: 10px auto;
+}
+
+.rowrow{
+    height: 100px;
+}
+
+.colcoldocheck{
+    position: relative;
+    transform: translate(0, -50%);
+    top: 60%;
+    width: 80%;
+    height: 50%;
+}
+
+.colcoldodel{
+    position: relative;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 80%;
+    height: 50%;
+}
+
+.colcoldodate{
+    font-size: 90%;
+    position: relative;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 80%;
+    height: 40%;
+    text-align: center;
+}
+
+.coldotask{
+    text-align: left;
+    font-size: 120%;
+    position: relative;
+    transform: translate(0, -50%);
+    top: 50%;
+    width: 80%;
+    height: 40%;
+}

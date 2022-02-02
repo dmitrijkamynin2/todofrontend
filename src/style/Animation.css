@@ -1,0 +1,27 @@
+.animation-enter {
+    opacity: 0;
+}
+
+.animation-enter-active{
+    opacity: 1;
+    transition: opacity 350ms;
+}
+
+.animation-exit {
+    opacity: 1;
+}
+
+.animation-exit-active{
+    opacity: 0;
+    transition: opacity 400ms;
+}
+
+.animationEdit-enter {
+    opacity: 0;
+}
+
+.animationEdit-enter-active{
+    opacity: 1;
+    transition: opacity 200ms;
+}
+

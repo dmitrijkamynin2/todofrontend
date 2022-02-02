@@ -1,0 +1,96 @@
+import React, {useState} from "react";
+import styles from '../style/App.module.css'
+import ToDo from '../image/to-do.jpg'
+import 'antd/dist/antd.css'
+import { Button, Input, Row, Col, message } from 'antd';
+
+function Head({addDo, sort , currentFilter, filterBy, orderBy}) {
+    const [nameTask, setnameTask] = useState('');
+
+    function editChange(e) {
+        setnameTask(e.target.value);
+    }
+
+    function chekEnter(e) {
+        if (e.key == 'Enter') {
+            if (nameTask === '') {
+                message.error('task must not be empty')
+            } else {
+            addDo({nameTask});
+            setnameTask('');
+            }
+        }
+    }
+
+    let activeFilter = [];
+    const activeColor = {backgroundColor: '#a7d8a5'};
+    switch (filterBy) {
+        case ('all'):
+            activeFilter[0] = activeColor;
+            break;
+        case ('done'):
+            activeFilter[1] = activeColor;
+            break;
+        case ('undone'):
+            activeFilter[2] = activeColor;
+            break;
+    }
+
+    let activeSort = [];
+    switch (orderBy) {
+        case ('desc'):
+            activeSort[0] = activeColor;
+            break;
+        case ('asc'):
+            activeSort[1] = activeColor;
+            break;
+    }
+    
+    return(
+            <div className={styles.head_container}>
+                <div className={styles.head}>
+                    <Row>
+                        <Col span={8}>
+                            <div className={styles.colcol}/>
+                        </Col>
+                        <Col span={8}>
+                            <img className={styles.colcol} src={ToDo} alt="To Do"/>
+                        </Col>
+                        <Col span={8}>
+                            <div className={styles.colcol}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={24}>
+                            <Input className={styles.colcolinput} maxLength="70" type="text" value={nameTask} onChange={editChange} onKeyUp={chekEnter} placeholder="I will..."/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={4}>
+                            <Button className={styles.colcol} style={activeFilter[0]} type="button" value="all" onClick={currentFilter}>All</Button>
+                        </Col>
+                        <Col span={4}>
+                            <Button className={styles.colcol} style={activeFilter[1]} type="button" value="done" onClick={currentFilter}>Done</Button>
+                        </Col>
+                        <Col span={4}>
+                            <Button className={styles.colcol} style={activeFilter[2]} type="button" value="undone" onClick={currentFilter}>Undone</Button>
+                        </Col>
+                        <Col span={4}>
+                            <div className={styles.colcol}></div>
+                        </Col>
+                        <Col span={2}>
+                            <div className={styles.colcolsort}>Sort:</div>
+                        </Col>
+                        <Col span={3}>
+                            <Button  className={styles.colcol} style={activeSort[0]} type="button" value="desc" onClick={sort}>Desc</Button>
+                        </Col>
+                        <Col span={3}>
+                            <Button  className={styles.colcol} style={activeSort[1]} type="button" value="asc" onClick={sort}>Asc</Button>
+                        </Col>
+                    </Row>
+                </div>
+            </div>
+    )
+}
+
+export default Head
