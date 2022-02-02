@@ -5,6 +5,7 @@ import styles from './style/App.module.css'
 import { Pagination, message } from 'antd';
 import 'antd/dist/antd.css'
 const axios = require('axios');
+const config = require('./config.js')
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   
   const upgradeTasks = async (orderBy, filterBy, page) => {
     try {
-      const resultReq  = await axios.get('http://localhost:4000/api/tasks/',{
+      const resultReq  = await axios.get(`${config.url}/api/tasks`,{
       params: {
         filterBy: filterBy,
         order: orderBy,
@@ -41,7 +42,7 @@ function App() {
 
   const addDo = async ({nameTask}) => {
     try {
-      const resultReq = await axios.post('http://localhost:4000/api/tasks', {
+      const resultReq = await axios.post(`${config.url}/api/tasks`, {
         "name": nameTask,
         "done": false,
         "createdAt": new Date(),
@@ -58,7 +59,7 @@ function App() {
 
   const delDo = async (e) => {
     try {
-      const resultReq = await axios.delete('http://localhost:4000/api/tasks', {
+      const resultReq = await axios.delete(`${config.url}/api/tasks`, {
         params: {
           id: e.currentTarget.id,
         }
@@ -73,7 +74,7 @@ function App() {
   }
 
   const editTaskGlobal = async (name, id, checked) => {
-      const resultReq = await axios.patch('http://localhost:4000/api/tasks', {
+      const resultReq = await axios.patch(`${config.url}/api/tasks`, {
       "name": name,
       "done": checked,
       "id": id,
