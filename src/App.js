@@ -31,7 +31,7 @@ function App() {
       }
     });
     let newArr = resultReq.data.tasks.map((task) => {
-      return {title: task.name, id: task.id , checked: task.done, date: task.createdAt}
+      return {title: task.name, id: task.uuid , checked: task.done, date: task.createdAt}
     });
     setNumberPage(Math.ceil(resultReq.data.count / 5));
     setTasks(newArr);
@@ -45,7 +45,6 @@ function App() {
       const resultReq = await axios.post(`${config.url}/api/tasks`, {
         "name": nameTask,
         "done": false,
-        "createdAt": new Date(),
       });
       upgradeTasks(orderBy, filterBy, page);
     } catch (err) {
@@ -61,7 +60,7 @@ function App() {
     try {
       const resultReq = await axios.delete(`${config.url}/api/tasks`, {
         params: {
-          id: e.currentTarget.id,
+          uuid: e.currentTarget.id,
         }
       });
       upgradeTasks(orderBy, filterBy, page);
@@ -77,7 +76,7 @@ function App() {
       const resultReq = await axios.patch(`${config.url}/api/tasks`, {
       "name": name,
       "done": checked,
-      "id": id,
+      "uuid": id,
     });
     upgradeTasks(orderBy, filterBy, page);
   }
