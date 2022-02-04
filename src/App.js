@@ -30,7 +30,7 @@ function App() {
         page: page,
       }
     });
-    let newArr = resultReq.data.tasks.map((task) => {
+    let newArr = resultReq.data.rows.map((task) => {
       return {title: task.name, id: task.uuid , checked: task.done, date: task.createdAt}
     });
     setNumberPage(Math.ceil(resultReq.data.count / 5));
