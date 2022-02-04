@@ -1,5 +1,5 @@
 const config = {
-    'url': 'http://localhost:4000'
+    'url': 'https://nameless-plains-03472.herokuapp.com'
 }
 
 module.exports = config;
