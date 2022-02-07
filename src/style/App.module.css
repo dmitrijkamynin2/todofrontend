@@ -147,5 +147,9 @@ p{
 }
 
 .elemForm{
-    margin: 10px auto;
+    margin: 5px auto;
+}
+
+.textForm{
+    margin: 0;
 }
