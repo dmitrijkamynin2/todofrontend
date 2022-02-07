@@ -28,7 +28,7 @@ input {
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
     background-color: white;
-    border-radius: 25px;
+    border-radius: 5px;
 }
 
 p{
@@ -131,4 +131,21 @@ p{
     top: 50%;
     width: 80%;
     height: 40%;
+}
+
+.formAuth{
+    border: solid 1px #c7c7c7;
+    height: 400px;
+    width: 500px;
+    margin: auto;
+    padding: 50px;
+    position: relative;
+    transform: translate(0, -50%);
+    top: 50%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.elemForm{
+    margin: 10px auto;
 }

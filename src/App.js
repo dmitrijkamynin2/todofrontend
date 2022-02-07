@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import Head from './components/Head.js'
 import DoList from './DoList.js'
+import Regist from './components/Regist.js'
+import Login from './components/Login.js'
 import styles from './style/App.module.css'
 import { Pagination, message } from 'antd';
 import 'antd/dist/antd.css'
@@ -96,7 +98,9 @@ function App() {
 
   return (
           <div className={styles.mybody}>
-            <Head 
+            <Login />
+            {/* <Regist /> */}
+            {/* <Head 
               addDo={addDo}
               sort={sort}
               currentFilter={currentFilter}
@@ -116,7 +120,7 @@ function App() {
                       showSizeChanger={false}
                       className={styles.pagingconteiner}
                       hideOnSinglePage={true}/>  
-              </div>
+              </div> */}
           </div>
         )
 }
