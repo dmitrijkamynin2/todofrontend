@@ -19,8 +19,7 @@ function Login() {
 
     const reqData = async () => {
         try {
-            setUserPassword('');
-            const token = await axios.patch(`${config.url}/login`,{
+            const token = await axios.post(`${config.url}/login`,{
               name: userName,
               password: userPassword,
             });

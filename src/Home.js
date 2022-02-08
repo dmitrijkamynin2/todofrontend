@@ -21,7 +21,7 @@ function Home() {
   }, [orderBy, filterBy, page]);
 
   axios.interceptors.request.use((req) => {
-    req.headers.Authorization = localStorage.getItem('token');
+    req.headers.authorization = localStorage.getItem('token');
     return req
   })
 
@@ -41,31 +41,13 @@ function Home() {
     setNumberPage(Math.ceil(resultReq.data.count / 5));
     setTasks(newArr);
     } catch (err) {
-      console.log(err);
-      message.error(`${err.name}:${err.message}`);
+      if (err.message === 'Request failed with status code 401') {
+        document.location.replace(`${config.thisUrl}/login`);
+      } else {
+        message.error(`${err.name}:${err.message}`);
+      }
     }
   }
-
-
-  // const upgradeTasks = async (orderBy, filterBy, page) => {
-  //   try {
-  //     const resultReq  = await axios.get(`${config.url}/api/tasks`,{
-  //     params: {
-  //       filterBy: filterBy,
-  //       order: orderBy,
-  //       pp: 5,
-  //       page: page,
-  //     }
-  //   });
-  //   let newArr = resultReq.data.rows.map((task) => {
-  //     return {title: task.name, id: task.uuid , checked: task.done, date: task.createdAt}
-  //   });
-  //   setNumberPage(Math.ceil(resultReq.data.count / 5));
-  //   setTasks(newArr);
-  //   } catch (err) {
-  //     message.error(`${err.name}:${err.message}`);
-  //   }
-  // }
 
   const addDo = async ({nameTask}) => {
     try {
