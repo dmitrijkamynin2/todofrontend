@@ -2,12 +2,14 @@ import styles from "../style/App.module.css"
 import 'antd/dist/antd.css'
 import { Button, Input } from 'antd';
 import {useState} from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 const config = require('../config.js')
 const axios = require('axios');
 
 function Login() {
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
+    const navigate = useNavigate();
 
     const changeUserName = (e) => {
         setUserName(e.target.value);
@@ -24,7 +26,7 @@ function Login() {
               password: userPassword,
             });
             localStorage.setItem('token', token.data);
-            document.location.replace(`${config.thisUrl}`);
+            navigate('/');
         } catch(err) {
             console.log(err);
         }
@@ -38,9 +40,9 @@ function Login() {
             Password:
             <Input.Password className={styles.elemForm} value={userPassword} onChange={changeUserPassword}/>
             <Button className={styles.elemForm} onClick={reqData}>Submit</Button>
-            <a href={`${config.thisUrl}/regist`}>
+            <Link to='/regist'>
                 Don't have an account?
-            </a>
+            </Link>
         </form>
     )
 }

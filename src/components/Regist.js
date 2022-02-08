@@ -2,6 +2,7 @@ import styles from "../style/App.module.css"
 import 'antd/dist/antd.css'
 import { Button, Input } from 'antd';
 import {useState} from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 const config = require('../config.js');
 const axios = require('axios');
 
@@ -9,6 +10,7 @@ function Regist() {
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [userSecondPassword, setUserSecondPassword] = useState('');
+    const navigate = useNavigate();
 
     const changeUserName = (e) => {
         setUserName(e.target.value);
@@ -30,7 +32,7 @@ function Regist() {
               name: userName,
               password: userPassword,
             });
-            document.location.replace(`${config.thisUrl}/login`);
+            navigate('/login');
         } catch(err) {
             console.log(err);
         }
@@ -46,9 +48,9 @@ function Regist() {
             <p className={styles.textForm}>Repeat password:</p>
             <Input.Password className={styles.elemForm} value={userSecondPassword} onChange={changeUserSecondPassword}/>
             <Button className={styles.elemForm} onClick={reqData}>Submit</Button>
-            <a href={`${config.thisUrl}/login`}>
+            <Link to='/login'>
                 Already have an account?
-            </a>
+            </Link>
         </form>
     )
 }

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import Head from './components/Head.js'
 import DoList from './DoList.js'
 import styles from './style/App.module.css'
 import { Pagination, message } from 'antd';
 import 'antd/dist/antd.css'
 const axios = require('axios');
-const config = require('./config.js')
+const config = require('./config.js');
 
 
 function Home() {
@@ -15,6 +16,7 @@ function Home() {
   const [orderBy, setOrderBy] = useState('desc');
   const [filterBy, setFilterBy] = useState('all');
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     upgradeTasks(orderBy, filterBy, page);
@@ -42,7 +44,7 @@ function Home() {
     setTasks(newArr);
     } catch (err) {
       if (err.message === 'Request failed with status code 401' || !localStorage.getItem('token')) {
-        document.location.replace(`${config.thisUrl}/login`);
+        navigate('/login');
       } else {
         message.error(`${err.name}:${err.message}`);
       }
