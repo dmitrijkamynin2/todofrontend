@@ -41,7 +41,7 @@ function Home() {
     setNumberPage(Math.ceil(resultReq.data.count / 5));
     setTasks(newArr);
     } catch (err) {
-      if (err.message === 'Request failed with status code 401') {
+      if (err.message === 'Request failed with status code 401' || !localStorage.getItem('token')) {
         document.location.replace(`${config.thisUrl}/login`);
       } else {
         message.error(`${err.name}:${err.message}`);
