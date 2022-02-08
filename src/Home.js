@@ -20,9 +20,14 @@ function Home() {
     upgradeTasks(orderBy, filterBy, page);
   }, [orderBy, filterBy, page]);
 
+  axios.interceptors.request.use((req) => {
+    req.headers.Authorization = localStorage.getItem('token');
+    return req
+  })
+
   const upgradeTasks = async (orderBy, filterBy, page) => {
     try {
-      const resultReq  = await axios.get(`${config.url}/api/tasks`,{
+      const resultReq  = await axios(`${config.url}/api/tasks`,{
       params: {
         filterBy: filterBy,
         order: orderBy,
@@ -36,9 +41,31 @@ function Home() {
     setNumberPage(Math.ceil(resultReq.data.count / 5));
     setTasks(newArr);
     } catch (err) {
+      console.log(err);
       message.error(`${err.name}:${err.message}`);
     }
   }
+
+
+  // const upgradeTasks = async (orderBy, filterBy, page) => {
+  //   try {
+  //     const resultReq  = await axios.get(`${config.url}/api/tasks`,{
+  //     params: {
+  //       filterBy: filterBy,
+  //       order: orderBy,
+  //       pp: 5,
+  //       page: page,
+  //     }
+  //   });
+  //   let newArr = resultReq.data.rows.map((task) => {
+  //     return {title: task.name, id: task.uuid , checked: task.done, date: task.createdAt}
+  //   });
+  //   setNumberPage(Math.ceil(resultReq.data.count / 5));
+  //   setTasks(newArr);
+  //   } catch (err) {
+  //     message.error(`${err.name}:${err.message}`);
+  //   }
+  // }
 
   const addDo = async ({nameTask}) => {
     try {
