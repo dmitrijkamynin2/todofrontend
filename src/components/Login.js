@@ -19,19 +19,13 @@ function Login() {
 
     const reqData = async () => {
         try {
-            // setUserPassword('');
-            // const token = await axios.patch(`${config.url}/login`,{
-            //   name: userName,
-            //   password: userPassword,
-            // });
-            // console.log(token.data);
-            // window.axios = axios.create({
-            //     headers: {
-            //         'Authorization': token.data,
-            //     }
-            // });
-            alert(window.axios.defaults.headers.Authorization);
-            // document.location.replace(`${config.thisUrl}/login`);
+            setUserPassword('');
+            const token = await axios.patch(`${config.url}/login`,{
+              name: userName,
+              password: userPassword,
+            });
+            localStorage.setItem('token', token.data);
+            document.location.replace(`${config.thisUrl}`);
         } catch(err) {
             console.log(err);
         }

@@ -19,7 +19,7 @@ function Home() {
   useEffect(() => {
     upgradeTasks(orderBy, filterBy, page);
   }, [orderBy, filterBy, page]);
-  
+
   const upgradeTasks = async (orderBy, filterBy, page) => {
     try {
       const resultReq  = await axios.get(`${config.url}/api/tasks`,{
