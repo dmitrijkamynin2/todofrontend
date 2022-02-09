@@ -1,6 +1,6 @@
 import styles from "../style/App.module.css"
 import 'antd/dist/antd.css'
-import { Button, Input } from 'antd';
+import { Button, Input, message } from 'antd';
 import {useState} from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 const config = require('../config.js')
@@ -21,6 +21,12 @@ function Login() {
 
     const reqData = async () => {
         try {
+            if (userName.length < 1 || userName.length > 20) {
+                throw new Error('login must be between 1 and 20 characters');
+            }       
+            if (userPassword.length < 6 || userPassword.length > 10) {
+                throw new Error('password must be between 6 and 10 characters');
+            }
             const token = await axios.post(`${config.url}/login`,{
               name: userName,
               password: userPassword,
@@ -28,6 +34,7 @@ function Login() {
             localStorage.setItem('token', token.data);
             navigate('/');
         } catch(err) {
+            message.error(err.message);
             console.log(err);
         }
     }

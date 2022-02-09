@@ -37,14 +37,19 @@ function Regist() {
             }
             setUserPassword('');
             setUserSecondPassword('');
-            const resultReq  = await axios.post(`${config.url}/regist`,{
+            await axios.post(`${config.url}/regist`,{
               name: userName,
               password: userPassword,
             });
             navigate('/login');
         } catch(err) {
-            message.error(err.message);
-            console.log(err);
+            if (err.message = 'Request failed with status code 422') {
+                message.error('there is already such a user');
+            } else {
+                message.error(err.message);
+                console.log(err);
+            }
+
         }
     }
 

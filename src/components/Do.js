@@ -42,6 +42,7 @@ function Do({task, delDo, editTaskGlobal}) {
                 } catch(err) {
                     if (err.message == 'Request failed with status code 401') {
                         message.error('there is already a task');
+                        unFocusTask();
                     } else {
                         message.error(`${err.name}:${err.message}`);
                     }

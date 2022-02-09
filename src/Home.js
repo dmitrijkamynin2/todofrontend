@@ -25,7 +25,7 @@ function Home() {
   axios.interceptors.request.use((req) => {
     req.headers.authorization = localStorage.getItem('token');
     return req
-  })
+  });
 
   const upgradeTasks = async (orderBy, filterBy, page) => {
     try {
