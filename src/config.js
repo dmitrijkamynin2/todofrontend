@@ -1,5 +1,5 @@
 const config = {
-    'url': 'https://nameless-plains-03472.herokuapp.com',
+    'url': 'http://localhost:4000',
     'thisUrl': 'http://localhost:3000' 
 }
 
