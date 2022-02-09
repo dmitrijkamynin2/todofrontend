@@ -23,6 +23,14 @@ img {
     border: solid 1px #c7c7c7;
 }
 
+.logout{
+    background-color: white;
+    width: 70%;
+    height: 70%;
+    margin: 6% auto;
+    border-radius: 5px;
+}
+
 input {
     font-size: 120%;
     font-family: Georgia, 'Times New Roman', Times, serif;

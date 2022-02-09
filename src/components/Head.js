@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styles from '../style/App.module.css'
 import ToDo from '../image/to-do.jpg'
+import Logout from './Logout'
 import 'antd/dist/antd.css'
 import { Button, Input, Row, Col, message } from 'antd';
 
@@ -57,7 +58,7 @@ function Head({addDo, sort , currentFilter, filterBy, orderBy}) {
                             <img className={styles.colcol} src={ToDo} alt="To Do"/>
                         </Col>
                         <Col span={8}>
-                            <div className={styles.colcol}/>
+                            <Logout className={styles.colcol}/>
                         </Col>
                     </Row>
                     <Row>
