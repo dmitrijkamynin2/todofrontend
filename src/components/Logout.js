@@ -10,12 +10,13 @@ function Logout() {
 
     const logOut = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
         navigate('/login');
     }
 
     return(
         <div className={styles.logout}>
-            <p className={styles.logouttext}>Welcome:<br></br>'username'</p>
+            <p className={styles.logouttext}>Welcome:<br></br>{localStorage.getItem('username')}</p>
             <Button danger className={styles.logoutbtn} onClick={logOut}>Logout</Button>
         </div>
     )

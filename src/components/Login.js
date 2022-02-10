@@ -32,6 +32,7 @@ function Login() {
               password: userPassword,
             });
             localStorage.setItem('token', token.data);
+            localStorage.setItem('username', userName);
             navigate('/');
         } catch(err) {
             message.error(err.message);
