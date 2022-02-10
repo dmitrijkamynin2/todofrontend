@@ -24,11 +24,30 @@ img {
 }
 
 .logout{
-    background-color: white;
     width: 70%;
     height: 70%;
     margin: 6% auto;
+    min-height: 75px;
+}
+
+.logouttext{
+    width: 100%;
+    margin: 2% auto 0 auto;
+    font-size: 110%;
+    text-align: center;
+    font-family: 'Snell Roundhand';
+    font-style: oblique;
+    background-color: white;
     border-radius: 5px;
+    height: 60%;
+}
+
+.logoutbtn{
+    width: 100%;
+    margin: 2% auto 0 auto;
+    font-family: 'Snell Roundhand';
+    font-style: oblique;
+    height: 40%;
 }
 
 input {

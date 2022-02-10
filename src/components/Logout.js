@@ -6,7 +6,8 @@ import { Button, Input, Row, Col, message } from 'antd';
 function Head({addDo, sort , currentFilter, filterBy, orderBy}) {
     return(
         <div className={styles.logout}>
-            <Button danger>Logout</Button>
+            <p className={styles.logouttext}>Welcome:<br></br>'username'</p>
+            <Button danger className={styles.logoutbtn}>Logout</Button>
         </div>
     )
 }
