@@ -20,26 +20,35 @@ function Login() {
         setUserPassword(e.target.value);
     }
 
+    // axios.interceptors.response.use((rec) => {
+    //     return rec
+    // }, (err) => {
+    //     setWaitResponce(false);
+    //     message.error(err.response.data);
+    // });
+
     const reqData = async () => {
         try {
             if (userName.length < 1 || userName.length > 20) {
-                throw new Error('login must be between 1 and 20 characters');
+                throw Error('login must be between 1 and 20 characters');
             }       
             if (userPassword.length < 6 || userPassword.length > 10) {
-                throw new Error('password must be between 6 and 10 characters');
+                throw Error('password must be between 6 and 10 characters');
             }
             setWaitResponce(true);
             const token = await axios.post(`${config.url}/login`,{
               name: userName,
               password: userPassword,
             });
-            localStorage.setItem('token', token.data);
-            localStorage.setItem('username', userName);
-            navigate('/');
+            console.log(token.data)
+            if (!!token) {
+                localStorage.setItem('token', token.data);
+                localStorage.setItem('username', userName);
+                navigate('/');
+            };
         } catch(err) {
             setWaitResponce(false);
             message.error(err.message);
-            console.log(err);
         }
     }
 
