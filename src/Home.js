@@ -27,6 +27,22 @@ function Home() {
     return req
   });
 
+  axios.interceptors.response.use((res) => {
+    return res
+  }, (err) => {
+    if (err?.response?.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      navigate('/login');
+    } else {
+      if (err?.response?.data === 'this task already exists') {
+        throw new Error('this task already exists');
+      } else {
+        throw new Error(err);
+      }
+    }
+  })
+
   const upgradeTasks = async (orderBy, filterBy, page) => {
     try {
       const resultReq  = await axios(`${config.url}/api/tasks`,{
@@ -57,7 +73,7 @@ function Home() {
         "name": nameTask,
         "done": false,
       });
-      upgradeTasks(orderBy, filterBy, page);
+      await upgradeTasks(orderBy, filterBy, page);
     } catch (err) {
       if (err.message == 'Request failed with status code 400') {
         message.error('there is already a task');
@@ -74,7 +90,7 @@ function Home() {
           uuid: e.currentTarget.id,
         }
       });
-      upgradeTasks(orderBy, filterBy, page);
+      await upgradeTasks(orderBy, filterBy, page);
       if ((numberPage === page) && (tasks.length == 1) && (page != 1)) {
         setPage(numberPage - 1);
       }
@@ -84,12 +100,19 @@ function Home() {
   }
 
   const editTaskGlobal = async (name, id, checked) => {
+    try {
       const resultReq = await axios.patch(`${config.url}/api/tasks`, {
       "name": name,
       "done": checked,
       "uuid": id,
-    });
-    upgradeTasks(orderBy, filterBy, page);
+      });
+      await upgradeTasks(orderBy, filterBy, page);
+      console.log(resultReq);
+      return true
+    } catch(err) {
+      message.error(err.message);
+    }
+
   }
 
   const sort = (e) => {

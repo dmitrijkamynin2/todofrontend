@@ -33,7 +33,7 @@ function Login() {
               name: userName,
               password: userPassword,
             });
-            console.log(token.data)
+            // console.log(token.data)
             if (!!token) {
                 localStorage.setItem('token', token.data);
                 localStorage.setItem('username', userName);

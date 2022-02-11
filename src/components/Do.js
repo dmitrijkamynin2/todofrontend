@@ -34,19 +34,15 @@ function Do({task, delDo, editTaskGlobal}) {
             if (e.target.value === '') {
                 message.error('task must not be empty')
             } else {
-                try {
-                    await editTaskGlobal(e.target.value, e.target.id, task.checked);
+                const result = await editTaskGlobal(e.target.value, e.target.id, task.checked);
+                if (result) {
                     setTitleTask(e.target.value);
                     e.target.blur();
                     setAnimationEdit(true);
-                } catch(err) {
-                    if (err.message == 'Request failed with status code 401') {
-                        message.error('there is already a task');
-                        unFocusTask();
-                    } else {
-                        message.error(`${err.name}:${err.message}`);
-                    }
+                } else {
+                    unFocusTask();
                 }
+
             }
         }
     }
