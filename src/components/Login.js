@@ -20,13 +20,6 @@ function Login() {
         setUserPassword(e.target.value);
     }
 
-    // axios.interceptors.response.use((rec) => {
-    //     return rec
-    // }, (err) => {
-    //     setWaitResponce(false);
-    //     message.error(err.response.data);
-    // });
-
     const reqData = async () => {
         try {
             if (userName.length < 1 || userName.length > 20) {
@@ -48,7 +41,11 @@ function Login() {
             };
         } catch(err) {
             setWaitResponce(false);
-            message.error(err.message);
+            if (err.response) {
+                message.error(err.response.data);
+            } else {
+                message.error(err.message);
+            }
         }
     }
 
