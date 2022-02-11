@@ -38,7 +38,7 @@ function Home() {
       if (err?.response?.data === 'this task already exists') {
         throw new Error('this task already exists');
       } else {
-        throw new Error(err);
+        throw new Error(err.message);
       }
     }
   })
